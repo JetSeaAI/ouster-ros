@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.10.0)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/ouster-sdk/cmake)
 include(DefaultBuildType)
 
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Default to Release build type" FORCE)
+endif()
+
 # ==== Project Name ====
 project(ouster_ros)
 
