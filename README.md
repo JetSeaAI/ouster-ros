@@ -172,6 +172,13 @@ ros2 launch ouster_ros sensor.launch.xml    \
     sensor_hostname:=169.254.8.186
 
 ```
+
+```bash
+ros2 launch ouster_ros sensor.launch.xml    \
+    sensor_hostname:=os-122503001994.local
+
+```
+
 #sensor serial: os-122503001994
 The equivalent python launch file is:
 ```bash
