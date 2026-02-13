@@ -162,10 +162,17 @@ formats (xml and python) but the python format is the preferred method:
 
 #### Sensor Mode
 To connect to a live sensor you use the following launch file
+
+> **⚠️ Very Important:**
+> 
+> If lidar data can't be received, please check the **UDP port settings** in the config. The **lidar** and **IMU** ports should be set to **7502** and **7503** respectively. Also, make sure that the sensor is configured to send data to the correct **IP address** of the machine running the driver.
+
 ```bash
 ros2 launch ouster_ros sensor.launch.xml    \
-    sensor_hostname:=<sensor host name>
+    sensor_hostname:=169.254.8.186
+
 ```
+#sensor serial: os-122503001994
 The equivalent python launch file is:
 ```bash
 ros2 launch ouster_ros driver.launch.py    \

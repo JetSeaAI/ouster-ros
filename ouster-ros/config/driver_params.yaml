@@ -37,16 +37,16 @@ ouster/os_driver:
     # - FUSA_RNG15_RFL8_NIR8_DUAL
     udp_profile_lidar: ''
     # metadata[optional]: path to save metadata file to, if left empty a file
-    # with the sensor hostname or ip will be crearted in ~/.ros folder.
+    # with the sensor hostname or ip will be created in ~/.ros folder.
     metadata: ''
     # lidar_port[optional]: port value should be in the range [0, 65535]. If you
-    # use 0 as the port value then the first avaliable port number will be
+    # use 0 as the port value then the first available port number will be
     # assigned.
-    lidar_port: 0
+    lidar_port: 7502
     # imu_port[optional]: port value should be in the range [0, 65535]. If you
-    # use 0 as the port value then the first avaliable port number will be
+    # use 0 as the port value then the first available port number will be
     # assigned.
-    imu_port: 0
+    imu_port: 7503
     # sensor_frame[optional]: name to use when referring to the sensor frame.
     sensor_frame: os_sensor
     # lidar_frame[optional]: name to use when referring to the lidar frame.
