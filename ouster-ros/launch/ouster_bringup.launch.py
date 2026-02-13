@@ -7,7 +7,7 @@ from pathlib import Path
 import launch
 import lifecycle_msgs.msg
 from ament_index_python.packages import get_package_share_directory
-from launch_ros.actions import LifecycleNode
+from launch_ros.actions import LifecycleNode,Node
 from launch.actions import (DeclareLaunchArgument, IncludeLaunchDescription,
                             RegisterEventHandler, EmitEvent, LogInfo)
 from launch.conditions import IfCondition
@@ -51,6 +51,27 @@ def generate_launch_description():
         parameters=[params_file],
         output='screen',
     )
+    pointcloud_to_laserscan = Node(
+            package='pointcloud_to_laserscan', executable='pointcloud_to_laserscan_node',
+            remappings=[('cloud_in', 'points'),
+                        ('scan', 'scan')],
+            parameters=[{
+                'target_frame': 'os_sensor',
+                'transform_tolerance': 0.01,
+                'min_height': -3.0,
+                'max_height': 3.0,
+                'angle_min': -2.0943951024,  # -M_PI/2 -120deg
+                'angle_max': 2.0943951024,  # M_PI/2 120deg
+                'angle_increment': 0.003,  # M_PI/360.0
+                'scan_time': 0.3333,
+                'range_min':0.0,
+                'range_max': 200.0,
+                'use_inf': False,
+                'inf_epsilon': 1.0
+            }],
+            name='pointcloud_to_laserscan',
+            namespace=ouster_ns,
+        )
 
     sensor_configure_event = EmitEvent(
         event=ChangeState(
@@ -99,6 +120,7 @@ def generate_launch_description():
         os_driver_name_arg,
         rviz_launch,
         os_driver,
+        pointcloud_to_laserscan,
         sensor_configure_event,
         sensor_activate_event,
         sensor_finalized_event
